@@ -1,3 +1,4 @@
+
 class ATM:
     def __init__(self, initial_balance=0.0, pin="1234"):
         self.balance = float(initial_balance)
@@ -33,7 +34,15 @@ class ATM:
         self.balance -= amount
         self.transactions.append(("withdraw", amount))
         print(f"Withdrew ₹{amount:.2f}. New balance: ₹{self.balance:.2f}")
-
+    
+    # Add this method inside the ATM class
+    def mini_statement(self, limit=5):            #merge content
+        if not self.transactions:
+            print("No transactions yet.")
+            return
+        print(f"Last {min(limit, len(self.transactions))} transactions:")
+        for t_type, amount in self.transactions[-limit:]:
+            print(f"- {t_type.capitalize()}: ₹{amount:.2f}")
 
 def main():
     atm = ATM(initial_balance=1000.0, pin="4321")
@@ -52,8 +61,9 @@ def main():
         print("1. Check Balance")
         print("2. Deposit")
         print("3. Withdraw")
-        print("4. Exit")
-        choice = input("Enter choice (1-4): ").strip()
+        print("4. Mini Statement")
+        print("5. Exit")
+        choice = input("Enter choice (1-5): ").strip()
 
         if choice == "1":
             atm.check_balance()
@@ -70,10 +80,12 @@ def main():
             except ValueError:
                 print("Invalid amount.")
         elif choice == "4":
+            atm.mini_statement()
+        elif choice == "5":
             print("Thank you for using the ATM. Goodbye!")
             break
         else:
-            print("Invalid choice. Please select 1-4.")
+            print("Invalid choice. Please select 1-5.")
 
 
 if __name__ == "__main__":
