@@ -1,2 +1,2 @@
 def login(username,password):
-    print("Login completed")
+    print("Login success")
