@@ -1,2 +1,3 @@
-def register_student(name, roll_no):
-    print(f"Student {name} with Roll No {roll_no} registered successfully")
+def register_student():
+    print("Student registered successfully")
+
